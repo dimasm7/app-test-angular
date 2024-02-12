@@ -1,0 +1,31 @@
+<section>
+    <div class="col-12">
+        <div class="mx-auto col-md-6">
+            <div class="card">
+                <div class="card-header">Login</div>
+                <div class="card-body">
+                    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                        <div class="mb-3">
+                            <label for="username">Username:<span class="text-danger">*</span> (user)</label>
+                            <input id="username" formControlName="username" type="text" class="form-control mt-2" autocomplete="off"/>
+                            @if((loginForm.get('username')?.hasError('required') && (loginForm.touched || loginForm.dirty))){
+                                <span class="text-danger">Username is required.</span>
+                            }
+                        </div>
+                        <div class="mb-3">
+                            <label for="password">Password:<span class="text-danger">*</span> (password123)</label>
+                            <input formControlName="password" type="password" class="form-control mt-2" autocomplete="off" />
+                            @if((loginForm.get('password')?.hasError('required') && (loginForm.touched || loginForm.dirty))){
+                                <span class="text-danger">Password is required.</span>
+                            }
+                            @if((loginForm.get('password')?.hasError('minlength') && (loginForm.touched || loginForm.dirty))){
+                                <span class="text-danger">Password min 6 character.</span>
+                            }
+                        </div>
+                        <button class="btn btn-primary" type="submit">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
