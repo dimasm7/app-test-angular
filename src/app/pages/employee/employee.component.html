@@ -1,8 +1,48 @@
-<div>
-    @if(tes == 'oke'){
-        <h1 class="text-center">yee</h1>
-    } @else {
-        <h2 class="text-center">sdds</h2>
-    }
-    sddddddqqqa
-</div>
+<section>
+    <h1 class="mb-4">Employees</h1>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">User Name</th>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Basic Salary</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Group</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (employee of employees; track employee) {
+                    <tr>
+                        <td>{{ employee.username }}</td>
+                        <td>{{ employee.firstName }}</td>
+                        <td>{{ employee.email }}</td>
+                        <td>{{ employee.basicSalary | number }}</td>
+                        <td>{{ employee.status }}</td>
+                        <td>{{ employee.group }}</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div class="d-flex justify-content-between p-2">
+        <ngb-pagination
+            [(page)]="page"
+            [pageSize]="pageSize"
+            [collectionSize]="collectionSize"
+            (pageChange)="refreshDataTable()"
+        >
+        </ngb-pagination>
+        <div class="w-auto d-flex align-items-center h-auto mb-3">
+            <span class="me-2">show</span>
+            <select class="form-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refreshDataTable()">
+                <option [ngValue]="10">10</option>
+                <option [ngValue]="30">30</option>
+                <option [ngValue]="50">50</option>
+                <option [ngValue]="100">100</option>
+            </select>
+        </div>
+    </div>
+</section>

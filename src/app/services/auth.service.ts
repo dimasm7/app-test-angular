@@ -1,14 +1,12 @@
 import { Injectable } from '@angular/core';
 import { ILogin } from '../shared/interfaces/login';
+import { USERACCOUNT } from '../shared/dummyData/userAccount';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  userLogin:ILogin = {
-    username: 'user',
-    password: 'password123'
-  }
+  userLogin:ILogin = USERACCOUNT;
   constructor() { }
 
   isLoggedIn(): boolean {
